@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="text"></div>
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            constructor() {
+                super()
+                console.log('constructor');
+                this.state = { count: 0 }
+            }
+            static getDerivedStateFromProps(props, state) {
+                console.log('getDerivedStateFromProps');
+                return null
+            }
+            componentDidMount() {
+                console.log('componentDidMount');
+            }
+            render() {
+                console.log('render');
+                return (
+                    <div>123</div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById('text'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        // 创建组件
+        class Person extends React.Component {
+        // static 表示给类本身追加属性而不是给类的实例
+        static propTypes = {
+            name: PropTypes.string.isRequired, //name必须传，且为字符串
+            sex: PropTypes.string, //限制sex为字符串
+            age: PropTypes.number, //限制age为数值类型
+            speak: PropTypes.func  //限制speak为函数
+        }
+        // 不传的话，指定默认值
+        static defaultProps = {
+            age: 20
+        }
+            render() {
+                console.log(this);
+                const { name, age, sex } = this.props
+                return (
+                    <ul>
+                        <li>姓名：{name}</li>
+                        <li>年龄：{age}</li>
+                        <li>性别：{sex}</li>
+                    </ul>
+                )
+            }
+        }
+        // 对标签属性（props）进行类型以及必要性的限制
+
+        const p = { name: '张三', age: 20, sex: '男' }
+        function speak() {
+            console.log('我可以说话！！！');
+        }
+        // 渲染组件到页面
+        ReactDOM.render(<Person name='李四' age={49} sex='男' speak={speak} />, document.getElementById('test2'))
+        ReactDOM.render(<Person {...p} />, document.getElementById('test1'))
+    </script>
+</body>
+
+</html>
